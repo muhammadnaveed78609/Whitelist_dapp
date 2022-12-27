@@ -11,3 +11,8 @@ REPORT_GAS=true npx hardhat test
 npx hardhat node
 npx hardhat run scripts/deploy.js
 ```
+
+Following Steps to Run this:
+
+Run Commands:
+1): npm install dotenv
