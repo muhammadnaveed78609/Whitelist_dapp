@@ -1,11 +1,54 @@
-import Head from 'next/head'
-import Image from 'next/image'
-import { Inter } from '@next/font/google'
-import styles from '../styles/Home.module.css'
-
-const inter = Inter({ subsets: ['latin'] })
+import Head from "next/head";
+import Image from "next/image";
+import { Inter } from "@next/font/google";
+import styles from "../styles/Home.module.css";
+import Web3Modal from "web3modal";
+import { providers, Contract } from "ethers";
+import { useEffect, useState, useRef } from "react";
+const inter = Inter({ subsets: ["latin"] });
 
 export default function Home() {
+  const [walletConnect, setWalletConnect] = useState(false);
+  // joinedWhitelist keeps track of whether the current metamask address has joined the Whitelist or not
+  const [joinedWhiteList, setJoinedWhiteList] = useState(false);
+  // loading is set to true when we are waiting for a transaction to get mined
+  const [loading, setLoading] = useState(false);
+  // numberOfWhitelisted tracks the number of addresses's whitelisted
+  const [numberOfWhitelisted, setNumberOfWhitelisted] = useState(0);
+  // Create a reference to the Web3 Modal (used for connecting to Metamask) which persists as long as the page is open
+  const web3ModalRef = useRef();
+  //a function who get provideror signer
+  const Getprovider_orSigner = async (needSigner = false) => {
+    // Connect to Metamask
+    // Since we store `web3Modal` as a reference, we need to access the `current` value to get access to the underlying object
+    const provider = await web3ModalRef.current.connect();
+    const web3provider = await providers.Web3Provider(provider);
+    // If user is not connected to the Goerli network, let them know and throw an error
+    // const { chainId } = await web3Provider.getNetwork();
+    // if (chainId !== 5) {
+    //   window.alert("Change the network to Goerli");
+    //   throw new Error("Change network to Goerli");
+    // }
+    if (needSigner) {
+      const signer = web3provider.getSigner();
+      return signer;
+    }
+    return web3provider;
+  };
+  /**
+   * addAddressToWhitelist: Adds the current connected address to the whitelist
+   */
+  const addAddressToWhitelist = async () => {
+    try {
+      // We need a Signer here since this is a 'write' transaction.
+      const signer = await Getprovider_orSigner(true);
+      // Create a new instance of the Contract with a Signer, which allows
+      // update methods
+      const whitelistcontract = new Contract();
+    } catch (error) {
+      console.log(error);
+    }
+  };
   return (
     <>
       <Head>
@@ -26,7 +69,7 @@ export default function Home() {
               target="_blank"
               rel="noopener noreferrer"
             >
-              By{' '}
+              By{" "}
               <Image
                 src="/vercel.svg"
                 alt="Vercel Logo"
@@ -119,5 +162,5 @@ export default function Home() {
         </div>
       </main>
     </>
-  )
+  );
 }
