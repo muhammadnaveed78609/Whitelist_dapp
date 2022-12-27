@@ -14,5 +14,6 @@ npx hardhat run scripts/deploy.js
 
 Following Steps to Run this:
 
-Run Commands:
+```Run Commands:
 1): npm install dotenv
+```
