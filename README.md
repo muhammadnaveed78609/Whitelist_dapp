@@ -16,4 +16,11 @@ Following Steps to Run this:
 
 ```Run Commands:
 1): npm install dotenv
+2): npm install --save-dev @nomicfoundation/hardhat-toolbox @nomicfoundation/hardhat-network-helpers @nomicfoundation/hardhat-chai-matchers @nomiclabs/hardhat-ethers @nomiclabs/hardhat-etherscan chai ethers hardhat-gas-reporter solidity-coverage @typechain/hardhat typechain @typechain/ethers-v5 @ethersproject/abi @ethersproject/providers
+```
+
+To execute this project:
+
+```Run Command:
+1): npx hardhat run scripts/deploy.js --network goerli
 ```
