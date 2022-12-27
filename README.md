@@ -23,8 +23,15 @@ Run Commands:
 
 To execute this project:
 
-Run Command:
+Deploy on network:
 
 ```
 1): npx hardhat run scripts/deploy.js --network goerli
+```
+
+Run this commands:
+
+```
+1): npm install web3modal
+2): npm install ethers
 ```
