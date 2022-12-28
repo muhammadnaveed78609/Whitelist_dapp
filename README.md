@@ -35,3 +35,7 @@ Run this commands:
 1): npm install web3modal
 2): npm install ethers
 ```
+
+About Smart Contract
+
+To build the smart contract we will be using Hardhat. Hardhat is an Ethereum development environment and framework designed for full stack development in Solidity. In simple words you can write your smart contract, deploy them, run tests, and debug your code.
